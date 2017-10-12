@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = require('prop-types')
-
+var Link = require('react-router-dom').Link
 function PlayerPreview(props) {
   return(
     <div>
@@ -98,6 +98,7 @@ class Battle extends React.Component {
     })
   }
   render(){
+    const match = this.props.match
     const playerOneName = this.state.playerOneName;
     const playerTwoName = this.state.playerTwoName;
     const playerOneImage = this.state.playerOneImage;
@@ -135,7 +136,19 @@ class Battle extends React.Component {
             label='Player Two'
             onSubmit={this.handleSubmit}/>
         }
+
         </div>
+        {
+          playerTwoImage && playerOneImage &&
+          <Link
+            className='button'
+            to={{
+              pathname: `${match.url}/results`,
+              search: `?playerOneName=${playerOneName}&playerTwoName=${playerTwoName}`
+            }}>
+            Battle
+          </Link>
+        }
       </div>
     )
   }
