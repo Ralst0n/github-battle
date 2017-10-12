@@ -14,7 +14,21 @@ class PlayerInput extends React.Component{
 
   render() {
     return(
-
+      <form className="column">
+        <label className='header' htmlFor='username'>
+          {this.props.label}
+        </label>
+        <input
+          id='username'
+          placeholder='github username'
+          type='text'
+          autoComplete='off'
+          value={this.state.username}
+          onChange={this.handleChange} />
+        <input
+          type='button'
+          onSubmit={this.props.onSubmit} />
+      </form>
     )
   }
 }
@@ -23,3 +37,5 @@ PlayerInput.PropTypes = {
   label: PropType.string.isRequired;
   onSubmit: PropType.func.isRequired;
 }
+
+module.exports = PlayerInput;
